@@ -1,0 +1,7 @@
+name: EnderEnigma
+version: '${version}'
+main: com.teenkung.enderenigma.EnderEnigma
+api-version: '1.19'
+prefix: EnderEnigma
+authors: [Teenkung123]
+description:  an immersive, exciting, and innovative Gacha plugin designed for Minecraft
