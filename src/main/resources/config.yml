@@ -1,0 +1,14 @@
+Database:
+  #Host of your MySQL Database
+  Host: localhost
+  #Username of your MySQL Database
+  Username: username
+  #Password of your MySQL Database
+  Password: password
+  #Port of your MySQL Database
+  Port: 3306
+  #Database of your MySQL Database
+  Database: minecraft
+  #Table Prefix to avoid duplicate table
+  #don't change if you don't know what are you doing.
+  Table_prefix: EnderEnigma_

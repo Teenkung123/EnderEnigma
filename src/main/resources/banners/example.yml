@@ -1,0 +1,22 @@
+key:
+  enable: false
+  type: ItemsAdder
+  id: myitem:myitem
+  amount: 1
+
+  #Vanilla things
+  #name: ""
+  #lore: []
+  #model-data: 0
+
+general:
+  uprate:
+    enable: false
+    uprate-pool: example
+    uprate-increase-chance: 2
+    uprate-start: 60
+
+pools:
+  example:
+    pool: example
+    chance: 100

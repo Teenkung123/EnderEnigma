@@ -1,5 +1,6 @@
 plugins {
     id 'java'
+    id 'com.github.johnrengelman.shadow' version '8.1.1'
 }
 
 group = 'com.teenkung'
@@ -15,12 +16,25 @@ repositories {
         name = "sonatype"
         url = "https://oss.sonatype.org/content/groups/public/"
     }
+    maven {
+        url 'https://jitpack.io'
+    }
+    maven {
+        name = "CodeMC"
+        url = uri("https://repo.codemc.io/repository/maven-public/")
+    }
+    maven {
+        name = "phoenix"
+        url = "https://nexus.phoenixdevt.fr/repository/maven-public/"
+    }
 }
 
 dependencies {
-compileOnly "org.spigotmc:spigot-api:1.19.4-R0.1-SNAPSHOT"
+    compileOnly "org.spigotmc:spigot-api:1.19.4-R0.1-SNAPSHOT"
+    compileOnly 'com.github.LoneDev6:API-ItemsAdder:3.5.0b'
+    compileOnly "de.tr7zw:item-nbt-api:2.11.3"
+    compileOnly 'net.Indyuce:MMOItems-API:6.9.2-SNAPSHOT'
 }
-
 def targetJavaVersion = 17
 java {
     def javaVersion = JavaVersion.toVersion(targetJavaVersion)

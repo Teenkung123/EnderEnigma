@@ -1,0 +1,9 @@
+items:
+  '1':
+    item:
+      type: ItemsAdder
+      id: myitem:myitem
+      amount: 1
+    weight: 1
+    commands: []
+    give-item: true
