@@ -9,6 +9,6 @@ import org.bukkit.configuration.file.FileConfiguration;
  * @param <T> Variable
  */
 @FunctionalInterface
-public interface ConfigConstructor<T> {
+interface ConfigConstructor<T> {
     T construct(FileConfiguration config, EnderEnigma plugin);
 }

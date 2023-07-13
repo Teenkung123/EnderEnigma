@@ -23,6 +23,9 @@ public class SQLManager {
         createLogsTable();
     }
 
+    /**
+     * Connect to MySQL database.
+     */
     private void connect() {
         try {
             connection = DriverManager.getConnection(
@@ -94,4 +97,6 @@ public class SQLManager {
         }
     }
 
+    public String getDataTableName() { return config.getDatabaseConfig().getTablePrefix() + "_data"; }
+    public String getLogsTableName() { return config.getDatabaseConfig().getTablePrefix() + "_logs"; }
 }

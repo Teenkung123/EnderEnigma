@@ -17,6 +17,4 @@ general:
     uprate-start: 60
 
 pools:
-  example:
-    pool: example
-    chance: 100
+  example: 100
