@@ -1,11 +1,14 @@
 package com.teenkung.enderenigma.manager;
 
 import com.teenkung.enderenigma.EnderEnigma;
+import com.teenkung.enderenigma.config.BannerConfig;
+import com.teenkung.enderenigma.config.PoolConfig;
 import com.teenkung.enderenigma.config.SubPoolConfig;
 import com.teenkung.enderenigma.utils.ItemSerialization;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+import org.checkerframework.checker.units.qual.A;
 
 import java.io.IOException;
 import java.sql.*;
@@ -16,10 +19,10 @@ import java.util.concurrent.CompletableFuture;
 
 public class PlayerDataManager {
 
-    private Player player;
-    private EnderEnigma plugin;
-    private Map<String, Integer> totalRolls = new HashMap<>();
-    private Map<String, Integer> currentRolls = new HashMap<>();
+    private final Player player;
+    private final EnderEnigma plugin;
+    private final Map<String, Integer> totalRolls = new HashMap<>();
+    private final Map<String, Integer> currentRolls = new HashMap<>();
 
 
     public PlayerDataManager(Player player, EnderEnigma plugin) {
@@ -66,6 +69,7 @@ public class PlayerDataManager {
      * @param bannerID Banner ID of the target logs
      * @param stacks ItemStack
      */
+    @SuppressWarnings("unused")
     public void addLogs(String bannerID, ArrayList<ItemStack> stacks) {
         SQLManager manager = plugin.getSqlManager();
         Connection connection = manager.getConnection();
@@ -99,6 +103,8 @@ public class PlayerDataManager {
      * @param bannerID bannerID
      * @param stack ItemStack
      */
+
+    @SuppressWarnings("unused")
     public void addLog(String bannerID, ItemStack stack) {
         SQLManager manager = plugin.getSqlManager();
         Connection connection = manager.getConnection();
@@ -148,11 +154,27 @@ public class PlayerDataManager {
                         statement.executeUpdate();
                     }
                 }
-
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
         });
+    }
+
+    public ArrayList<SubPoolConfig> requestPull(String bannerID, Integer amount) {
+        ArrayList<SubPoolConfig> list = new ArrayList<>();
+        if (plugin.getConfigLoader().getBannerList().contains(bannerID)) {
+            BannerConfig banner = plugin.getConfigLoader().getBannerConfig(bannerID);
+            CompletableFuture<ArrayList<PoolConfig>> completableResult = banner.requestPulling(amount, this);
+            completableResult.thenAccept(result -> Bukkit.getScheduler().runTask(plugin, () -> {
+                for (PoolConfig pool : result) {
+                    CompletableFuture<SubPoolConfig> completableSubPool = pool.requestPull(this);
+                    completableSubPool.thenAccept(subPool -> Bukkit.getScheduler().runTask(plugin, () -> {
+                        list.add(subPool);
+                    }));
+                }
+            }));
+        }
+        return list;
     }
 
 

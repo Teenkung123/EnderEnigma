@@ -5,3 +5,36 @@ api-version: '1.19'
 prefix: EnderEnigma
 authors: [Teenkung123]
 description:  an immersive, exciting, and innovative Gacha plugin designed for Minecraft
+commands:
+  enderenigma:
+    permission: enderenigma.command
+    aliases:
+      - ee
+      - eenigma
+      - enigma
+
+permissions:
+  enderenigma.admin:
+    description: admin permission for EnderEnigma plugin
+    children:
+      - enderenigma.open
+      - enderenigma.command
+      - enderenigma.force-open
+      - enderenigma.logs
+      - enderenigma.logs.other
+      - enderenigma.info
+      - enderenigma.editor
+  enderenigma.command:
+    description: permission to display help message of EnderEnigma plugin
+  enderenigma.open:
+    description: permission to open EnderEnigma crate remotely with a key
+  enderenigma.force-open:
+    description: permission to open EnderEnigma crate remotely without a key
+  enderenigma.logs:
+    description: permission to open EnderEnigma logs remotely
+  enderenigma.logs.other:
+    description: permission to open EnderEnigma logs of other players remotely
+  enderenigma.info:
+    description: permission to open EnderEnigma crate info
+  enderenigma.editor:
+    description: permission to open EnderEnigma editor menu

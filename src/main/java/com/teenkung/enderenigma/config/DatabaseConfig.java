@@ -2,12 +2,12 @@ package com.teenkung.enderenigma.config;
 
 public class DatabaseConfig {
 
-    private String host;
-    private String username;
-    private String password;
-    private String port;
-    private String tablePrefix;
-    private String database;
+    private final String host;
+    private final String username;
+    private final String password;
+    private final String port;
+    private final String tablePrefix;
+    private final String database;
 
     public DatabaseConfig(String host, String username, String password, String port, String tablePrefix, String database) {
         this.host = host;

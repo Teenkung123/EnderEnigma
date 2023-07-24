@@ -7,3 +7,11 @@ items:
     weight: 1
     commands: []
     give-item: true
+  '2':
+    item:
+      type: ItemsAdder
+      id: myitem:myitem2
+      amount: 1
+    weight: 1
+    commands: []
+    give-item: true

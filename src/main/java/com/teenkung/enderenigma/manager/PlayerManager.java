@@ -8,8 +8,8 @@ import java.util.Map;
 
 public class PlayerManager {
 
-    private EnderEnigma plugin;
-    private Map<Player, PlayerDataManager> map = new HashMap<>();
+    private final EnderEnigma plugin;
+    private final Map<Player, PlayerDataManager> map = new HashMap<>();
 
     public PlayerManager(EnderEnigma plugin) {
         this.plugin = plugin;

@@ -4,11 +4,6 @@ key:
   id: myitem:myitem
   amount: 1
 
-  #Vanilla things
-  #name: ""
-  #lore: []
-  #model-data: 0
-
 general:
   uprate:
     enable: false

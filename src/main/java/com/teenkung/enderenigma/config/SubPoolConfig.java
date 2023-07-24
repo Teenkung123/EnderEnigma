@@ -10,18 +10,14 @@ import org.bukkit.inventory.ItemStack;
 import java.util.ArrayList;
 
 public class SubPoolConfig {
-
-    private final ConfigurationSection section;
-    private final EnderEnigma plugin;
-    private final ItemBuilder item;
-    private final Integer weight;
-    private final ArrayList<String> commands;
-    private final boolean giveItem;
+    private final String id;
+    private ItemBuilder item;
+    private Integer weight;
+    private ArrayList<String> commands;
+    private Boolean giveItem;
 
 
     public SubPoolConfig(ConfigurationSection section, EnderEnigma plugin) {
-        this.section = section;
-        this.plugin = plugin;
         ConfigurationSection itemSection = section.getConfigurationSection("item");
         if (itemSection == null) {
             try {
@@ -30,6 +26,7 @@ public class SubPoolConfig {
                 throw new RuntimeException(e);
             }
         } else {
+            this.id = section.getName();
             this.item = new ItemBuilder(itemSection);
             this.weight = section.getInt("weight");
             this.commands = new ArrayList<>(section.getStringList("commands"));
@@ -37,9 +34,25 @@ public class SubPoolConfig {
         }
     }
 
+    public SubPoolConfig(String id, ItemBuilder item, Integer weight, ArrayList<String> commands, Boolean giveItem) {
+        this.id = id;
+        this.item = item;
+        this.weight = weight;
+        this.commands = commands;
+        this.giveItem = giveItem;
+    }
+
+
+
+    public String getId() { return id; }
+    public ItemStack getItem() { return item.getItem(); }
     public Integer getWeight() { return weight; }
     public ArrayList<String> getCommands() { return commands; }
-    public ItemStack getItem() { return item.getItem(); }
     public Boolean getGiveItem() { return giveItem; }
+
+    public void setItem(ItemBuilder item) { this.item = item; }
+    public void setWeight(Integer weight) { this.weight = weight; }
+    public void setCommands(ArrayList<String> commands) { this.commands = commands; }
+    public void setGiveItem(Boolean status) { this.giveItem = status; }
 
 }
